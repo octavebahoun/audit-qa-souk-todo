@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Liste de tâches — audit QA Souk.dev</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; }
+    body { max-width: 32rem; margin: 2rem auto; padding: 0 1rem; }
+    h1 { font-size: 1.4rem; }
+    form { display: flex; gap: .5rem; margin: 1rem 0; }
+    input[type="text"] { flex: 1; padding: .4rem .5rem; }
+    button { padding: .4rem .8rem; }
+    li { margin: .35rem 0; }
+    .note { color: #555; font-size: .9rem; }
+  </style>
+</head>
+<body>
+  <h1>Liste de tâches</h1>
+  <p class="note">Appli de test pour l’audit QA de Souk.dev. Aucune donnée n’est envoyée à un serveur.</p>
+  <form id="formulaire" autocomplete="off">
+    <label for="tache" class="visually-hidden" style="position:absolute;left:-9999px">Nouvelle tâche</label>
+    <input id="tache" type="text" name="tache" placeholder="Nouvelle tâche" aria-label="Nouvelle tâche">
+    <button type="submit" id="ajouter">Ajouter</button>
+  </form>
+  <ul id="liste"></ul>
+  <script>
+    // Bug volontaire (documenté dans le README) : le bouton « Ajouter »
+    // n’interdit pas une tâche vide (chaîne vide ou seulement des espaces).
+    const formulaire = document.getElementById("formulaire");
+    const champ = document.getElementById("tache");
+    const liste = document.getElementById("liste");
+    formulaire.addEventListener("submit", function (event) {
+      event.preventDefault();
+      const texte = champ.value;
+      const item = document.createElement("li");
+      item.textContent = texte;
+      liste.appendChild(item);
+      champ.value = "";
+      champ.focus();
+    });
+  </script>
+</body>
+</html>

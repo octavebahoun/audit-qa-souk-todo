@@ -1,0 +1,8 @@
+services:
+  web:
+    build: .
+    # Le conteneur nginx écoute sur le port 80, déclaré dans soukdev.json.
+    # Pas de publication host « ports: » : Souk.dev refuse souvent les bindings hôte
+    # et proxifie lui-même le port indiqué par service_web.
+    expose:
+      - "80"
