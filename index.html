@@ -33,6 +33,7 @@
     formulaire.addEventListener("submit", function (event) {
       event.preventDefault();
       const texte = champ.value;
+      if (texte.trim() === '') { alert('La tâche ne peut pas être vide.'); return; }
       const item = document.createElement("li");
       item.textContent = texte;
       liste.appendChild(item);
